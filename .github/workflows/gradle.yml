@@ -27,12 +27,19 @@ jobs:
 
       - name: Set up Docker Compose
         run: sudo apt-get update && sudo apt-get install docker-compose -y
+        shell: bash
 
       - name: Build and run Docker Compose
         run: docker-compose up -d --build
+        shell: bash
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
+        shell: bash
+
+      - name: Test Project
+        run: ./gradlew test
+        shell: bash
 
       - name: Shutdown Docker Compose
         run: docker-compose down
